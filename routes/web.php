@@ -18,3 +18,7 @@ Route::get('/', 'IndexController@index');
 Route::get('/hello-world', 'SampleController@helloWorld');
 
 Route::get('/hello-laravel', 'SampleController@helloLaravel');
+
+Route::get('/movies', 'MovieController@index');
+
+Route::get('/about-us', 'AboutController@aboutUs');
