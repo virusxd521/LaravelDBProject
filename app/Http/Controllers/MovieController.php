@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,6 @@ class MovieController extends Controller
 
         $results = $query_builder->get();
         */
-
 
         $movies = Movie::limit(50) // LIMIT 50
             ->where('votes_nr', '>', 5000) // AND `votes_nr` > 5000

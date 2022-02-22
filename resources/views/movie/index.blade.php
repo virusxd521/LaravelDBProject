@@ -11,9 +11,6 @@
     <h1>Top rated movies</h1>
 
     <ul>
-        <!-- This makes it into the response -->
-
-        {{-- My boss is an asshole --}}
 
         @foreach ($movies as $movie)
 
@@ -23,6 +20,13 @@
                 @if ($movie->rating > 9)
                     Rating: {{ $movie->getFormattedRating() }} / 10
                 @endif
+
+                <h3>Genres:</h3>
+                <ul>
+                    @foreach ($movie->genres as $genre)
+                        <li>{{ $genre->name }}</li>
+                    @endforeach
+                </ul>
             </li>
 
         @endforeach
