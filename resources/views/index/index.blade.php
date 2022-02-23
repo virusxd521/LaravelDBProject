@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel IMDB</title>
-</head>
-<body>
+@extends('../layouts/default')
 
+@section('content')
     <h1>Welcome to the IMDB website</h1>
 
     <h2>made in Laravel</h2>
 
+
+        @include('../includes/header')
     <h2>Top movies today:</h2>
 
     <ul>
@@ -23,5 +18,4 @@
 
         <?php endforeach; ?>
     </ul>
-</body>
-</html>
+@endsection

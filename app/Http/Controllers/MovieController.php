@@ -41,4 +41,14 @@ class MovieController extends Controller
         return view('movie.index', compact('movies'));
         //                       ['movies' => $movies]
     }
+
+    public function show($id = null)
+    {
+        if (isset($id)) {
+            return $id;
+
+        } else {
+            return 'no id';
+        }
+    }
 }

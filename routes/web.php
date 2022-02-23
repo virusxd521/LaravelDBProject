@@ -21,4 +21,6 @@ Route::get('/hello-laravel', 'SampleController@helloLaravel');
 
 Route::get('/movies', 'MovieController@index');
 
+Route::get('/movie/{id?}', 'MovieController@show');
+
 Route::get('/about-us', 'AboutController@aboutUs');
