@@ -24,3 +24,12 @@ Route::get('/movies', 'MovieController@index');
 Route::get('/movie/{id?}', 'MovieController@show');
 
 Route::get('/about-us', 'AboutController@aboutUs');
+
+Route::post('/create-movie', 'MovieController@insert');
+
+Route::get('/list', 'MovieController@show')->name('list');
+
+Route::post('/delete', 'MovieController@delete')->name('delete');
+
+
+

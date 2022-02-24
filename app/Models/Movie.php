@@ -10,12 +10,24 @@ use App\Models\Genre;
 
 class Movie extends Model
 {
+    
     use HasFactory;
+    protected $table = 'movies';    
+    public $timestamps = false;
+
 
     public function type()
     {
         return $this->belongsTo(MovieType::class);
     }
+
+
+
+    public function movie(){
+        
+    }
+
+
 
     public function genres()
     {

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Genre;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class MovieController extends Controller
 {
@@ -13,42 +15,43 @@ class MovieController extends Controller
      *
      * (top 50)
      */
+            
+            
     public function index()
-    {
-        // SELECT *
-        // FROM `movies`
-        // WHERE `movie_type_id` = 1
-        //   AND `votes_nr` > 5000
-        // ORDER BY `rating` DESC
-        // LIMIT 50
-
-        /*
-        $query_builder = Movie::query(); // FROM `movies`
-        $query_builder->where('votes_nr', '>', 5000); // AND `votes_nr` > 5000
-        $query_builder->orderBy('rating', 'desc'); // ORDER BY `rating` DESC
-        $query_builder->limit(50); // LIMIT 50
-        $query_builder->where('movie_type_id', 1); // WHERE `movie_type_id` = 1
-
-        $results = $query_builder->get();
-        */
-
-        $movies = Movie::limit(50) // LIMIT 50
-            ->where('votes_nr', '>', 5000) // AND `votes_nr` > 5000
-            ->orderBy('rating', 'desc') // ORDER BY `rating` DESC
-            ->where('movie_type_id', 1) // WHERE `movie_type_id` = 1
-            ->get();
-
+    {   
+        $table = new Movie;
+        $movies = $table::all('*');
+        // $movies;
         return view('movie.index', compact('movies'));
-        //                       ['movies' => $movies]
     }
 
-    public function show($id = null)
-    {
-        if (isset($id)) {
-            return $id;
-
-        } else {
-            return 'no id';
-        }
+    public function insert(Request $request){
+        $data = $request;
+        $name = $data->all()['name'] ?? 'Daniel';
+        $year = $data->all()['year'] ?? '1996';
+        $movie = new Movie;
+        $movie->name = $name;
+        $movie->year = $year;
+        $movie->save();
+        
+        return view('movie.inserting', compact('movie'));
     }
+    
+
+    public function show()
+    {       
+        $movie = DB::table('movies')->limit(50)->get();
+        return view('index.deleting', compact('movie'));
+    }
+
+    public function delete(Request $request){
+        $data = $request;
+        $movie = DB::table('movies')->delete($data->id);
+        return view('index.dataDelete', compact('data'));
+        
+        
+    }
+
+
+
 }
